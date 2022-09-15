@@ -1,0 +1,96 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        script(src="https://cdn.jsdelivr.net/npm/chart.js@3.6.2/dist/chart.min.js")
+        script(src='https://code.jquery.com/jquery-3.6.0.js')
+        script(src='/javascripts/tilt.js-master/dest/tilt.jquery.js')
+        script(src='/javascripts/tilt.js-master/dest/tilt.jquery.min.js')
+        script(src='/javascripts/tilt.js-master/src/tilt.jquery.js')
+        link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css')
+        link(rel='stylesheet' type='text/css' href='/stylesheets/Chart.css')
+        title Document
+    section.showcase 
+        header
+            img.logo(id="logobtn")(src="./images/logo.png" onclick="window.location.assign('/')")
+            h3.topmenutext(id="Chart" onclick="window.location.assign('Chart')") My chart
+            h3.topmenutext(id="SetGoal") Set a goal
+            h3.topmenutext(id="AboutUS" onclick="window.location.assign('aboutUs')") About us
+            .toggle
+        .col-data1 
+                p.dispRangeTextclass(id="dispRangeText") Show specific range
+                .dataPickArea
+                    .StartDiv 
+                        p.datePickText Starting Time
+                        input#dateRangeStart.dateInput(type='date' value='2021-12-11' onchange='filterData()')
+                    .EndDiv
+                        p.datePickTextEnd Ending Time
+                        input#dateRangeEnd.dateInput(type='date' value='2021-12-17' onchange='filterData()') 
+                button.btnrecord record today
+        .canvasbox 
+            canvas#myChart
+            
+    .menu
+        img.memberimage(src="/images/member.png", alt="")
+        .loginbtndiv
+            button.loginbtn(onclick="window.location.assign('login')") Login 
+            br
+            button.signup(onclick="window.location.assign('signup')") SignUp
+        #linkweb
+        .record 
+            h2 Record Today
+            #weight 
+                h3 Weight
+            #eat 
+                h3 eat
+            #sport
+                h3 sport
+script.
+  setInterval("linkweb.innerHTML=new Date().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay());",1000);
+script(src='/javascripts/tilt.js-master/src/tilt.jquery.js') 
+script(src='/javascripts/index.js')
+script(src='/javascripts/chart.js')
+                
+script.
+  const labels=['2021-12-11','2021-12-12','2021-12-13','2021-12-14','2021-12-15','2021-12-16','2021-12-17','2021-12-18','2021-12-19','2021-12-20',];
+  const datapoint=[55,56,54,53,57,58,60,58,56,56,55,54,52];
+  const ctx = document.getElementById('myChart').getContext('2d');
+  const myChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+  labels: labels,
+  datasets: [{
+  label: 'Weight over time',
+  data: datapoint,
+  backgroundColor: [
+  'rgba(255, 99, 132, 0.2)',
+  ],
+  borderColor: [
+  'rgba(255, 99, 132, 1)',
+  ],
+  borderWidth: 1
+  }]
+  },
+  });
+  function filterData(){
+      const labels2=[...labels];
+      //console.log(labels2);
+      const dateRangeStart=document.getElementById('dateRangeStart');
+      const dateRangeEnd=document.getElementById('dateRangeEnd');
+      //get the index number in array
+      const indexdateRangeStart=labels2.indexOf(dateRangeStart.value);
+      //console.log(indexdateRangeStart);
+      const indexdateRangeEnd=labels2.indexOf(dateRangeEnd.value);
+      //只顯示選取的日期
+      const filterDate=labels2.slice(indexdateRangeStart,indexdateRangeEnd+1);
+      //replace labels
+      myChart.config.data.labels=filterDate;
+      //datapoints
+      const datapoints2=[...datapoint];
+      const filterDataPoint=datapoints2.slice(indexdateRangeStart,indexdateRangeEnd+1);
+      myChart.config.data.datasets[0].data=filterDataPoint;
+      myChart.update();
+
+  }

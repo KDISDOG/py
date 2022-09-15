@@ -1,0 +1,49 @@
+import requests
+from bs4 import BeautifulSoup
+url = "https://travel.ettoday.net/category/%E6%A1%83%E5%9C%92/"
+url_host = "https://travel.ettoday.net"
+response = requests.get(url)   # User input
+
+soup = BeautifulSoup(response.text, "html.parser")
+
+titles = soup.find_all("h3")
+
+# print (titles)
+links = soup.find_all("a")
+List = []
+List2 = []  # link
+# page_url = url_host + link.get("href")
+for link in links:  # 檢查網址完整性
+    linkStr = str(link)
+    if "http" not in linkStr:
+        page_url = url_host + link.get("href")
+
+        List2.append(page_url)
+    else:
+        List2.append(link.get("href"))
+
+for title in titles:
+    # print(title.get("href"))
+    List.append(title.select_one("a").get("href"))
+len(List)
+for item in range(5):
+    try:
+        response = requests.get(List[item])
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        print('網址:')
+        print(List[item])
+
+        title_tag = soup.title
+        print('標題:')
+        print(title_tag.string)
+
+        content = soup.find('div', attrs={'class': 'story'})
+        print('內文:')
+        print(content.text)
+        print('\n')
+
+    except Exception:
+        print("網址錯誤")
+
+# titles = soup2.find_all("h3", itemprop="headline")

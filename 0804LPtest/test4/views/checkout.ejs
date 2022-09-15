@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>購物清單</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <p><%= order.orderId %></p>
+    <p><%= order.amount %></p>
+    <p><%= order.packages[0].id %></p>
+    <form action="/createOrder/<%= order.orderId %>" method="post">
+        <button type="submit">送出表單</button>
+    </form>
+  </body>
+</html>
+

@@ -1,0 +1,196 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', monospace;
+}
+
+.showcase {
+    position: absolute;
+    right: 0;
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #04afbb;
+    transition: 0.5s;
+    z-index: 1;
+}
+
+.showcase.active {
+    right: 300px;
+}
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px 100px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    text-transform: uppercase;
+    cursor: pointer;
+    animation: fadeInUp;
+    animation-duration: 1.4s;
+    height: 200px;
+}
+
+header #Chart {
+    margin-left: 20%;
+    display: inline-block;
+}
+
+header .topmenutext {
+    color: #fff;
+    cursor: pointer;
+    animation: fadeInUp;
+    animation-duration: 1.4s;
+    font-size: 28px;
+}
+
+.toggle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background: url("../images/menu.png");
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: center;
+    cursor: pointer;
+    animation: fadeInUp;
+    animation-duration: 1.4s;
+}
+
+.toggle.active {
+    background: url("../images/menuclose.png");
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: center;
+    cursor: pointer;
+    animation: rotateIn;
+    animation-duration: 0.5s;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #04afbb;
+    mix-blend-mode: overlay;
+}
+
+.menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu .memberimage {
+    position: absolute;
+    height: 100px;
+    top: 90px;
+}
+
+.menu .loginbtndiv {
+    position: absolute;
+    top: 230px;
+}
+
+.menu .loginbtn,
+.signup {
+    font-size: 30px;
+    border-style: none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+}
+
+.menu .loginbtn {
+    position: relative;
+    left: 10%;
+    color: #04afbb;
+}
+
+.menu .signup {
+    position: relative;
+    top: 10px;
+}
+
+.menu #linkweb {
+    position: relative;
+    bottom: 95px;
+}
+
+.canvasbox {
+    position: absolute;
+    left: 40%;
+    top: 30%;
+    background-color: #fff;
+}
+
+.canvasbox #myChart {
+    height: 1000px;
+    width: 1000px;
+}
+
+.col-data1 {
+    position: absolute;
+    font-weight: bold;
+    color: #fff;
+    left: 7%;
+    top: 30%;
+}
+
+.col-data1 .dispRangeTextclass {
+    font-size: 30px;
+}
+
+.col-data1 .dataPickArea {
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 5%;
+    font-size: 25px;
+}
+
+
+.dataPickArea .EndDiv {
+    position: absolute;
+    margin-top: 5%;
+}
+
+.dataPickArea .dateInput {
+    height: 30px;
+}
+.record{
+    position: relative;
+    top: 0%;
+    right: 950px;
+    width: 900px;
+    height:600px;
+    background-color: rgb(255, 255, 255);
+    z-index: 2;
+    display: none;
+}
+.btnrecord{
+    font-size: 30px;
+    color: #fff;
+    border:white solid 1px ;
+    background-color: #04afbb;
+    position:absolute;
+    top:1000%;
+    left: 5%;
+}
